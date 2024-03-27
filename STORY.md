@@ -13,7 +13,7 @@ Your mission is to design a new solution that is not only manageable, maintainab
 We're particularly interested in enhancing state management to prevent data loss during unintended page refreshes and 
 implementing a prefilling logic to pull data from external REST APIs.
 
-Although your team lead has suggested using Angular and Spring Boot, the technology stack is open for discussion.
+The company uses **Angular** and **Spring Boot** as their technology stack.
 
 ## Task
 
