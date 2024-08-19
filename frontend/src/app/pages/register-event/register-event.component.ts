@@ -2,12 +2,14 @@ import { AfterViewInit, Component } from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
 import {FormControl} from '@angular/forms';
 import { Location } from './types';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-register-event',
   standalone: true,
   imports: [
     ReactiveFormsModule,
+    RouterLink,
   ],
   templateUrl: './register-event.component.html',
   styleUrl: './register-event.component.scss'
@@ -28,6 +30,8 @@ export class RegisterEventComponent implements AfterViewInit {
   description = new FormControl('')
   locationId = new FormControl<number>(2)
   directions = new FormControl('')
+  publicEvent = new FormControl(false)
+  internalEventDescription = new FormControl('')
 
   async ngAfterViewInit() {
     try {

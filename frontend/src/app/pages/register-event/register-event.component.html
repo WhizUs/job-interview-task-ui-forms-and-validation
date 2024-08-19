@@ -73,9 +73,30 @@
           <textarea rows="5" name="" id="roomDirection" [formControl]="directions"></textarea>
         </div>
       </div>
+      @if (type.value === 'event') {
+        <div class="form-group">
+          <h5>Event permission</h5>
+          <div class="form-input">
+            <label for="publicEvent">Public Event</label>
+            <input type="checkbox" id="publicEvent" [formControl]="publicEvent">
+          </div>
+          <div class="form-input">
+            <label for="internalEventDescription">Company internal event needs and description</label>
+            <textarea
+              rows="5"
+              id="internalEventDescription"
+              [formControl]="internalEventDescription"
+              placeholder="Catering needed, social media promotion, etc."
+            ></textarea>
+          </div>
+        </div>
+      }
       <div>
         <button type="submit" class="btn">Register new event</button>
       </div>
     </form>
+    <div class="nav">
+      <a routerLink="/list-events" mat-raised-button>Show Events</a>
+    </div>
   }
 </div>

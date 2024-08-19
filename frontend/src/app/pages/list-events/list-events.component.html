@@ -1,0 +1,23 @@
+<div class="list-events">
+  <h1>Events at WhizCorp</h1>
+  <hr />
+  @if (loading) {
+    <div class="loader"></div>
+  } @else {
+    <div>
+      <div class="event" *ngFor="let event of events">
+        <h4>Type: {{ event.type }}</h4>
+        <h2>{{ event.title }}</h2>
+        <p>{{ event.description }}</p>
+        <p>🗓️ {{ event.startDate }} - {{ event.endDate }}</p>
+        <div>Attendees: {{ event.numberOfAttendees }}</div>
+        <div>Where: 📍 {{ event.location?.name }}
+          <p>{{ event.locationDirection }}</p>
+        </div>
+      </div>
+      <div class="nav">
+        <a routerLink="/register-event" mat-raised-button>Show Events</a>
+      </div>
+    </div>
+  }
+</div>
