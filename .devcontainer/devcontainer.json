@@ -1,0 +1,27 @@
+{
+  "name": "Angular and Java Dev Container",
+  "image": "timbru31/java-node:17-jdk-iron",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-gradle",
+        "angular.ng-template",
+        "redhat.java"
+      ],
+      "settings": {
+        "java.jdt.ls.java.home": "/opt/java/openjdk",
+        "java.configuration.runtimes": [
+          {
+            "name": "JavaSE-17",
+            "path": "/opt/java/openjdk"
+          }
+        ]
+      }
+    }
+  },
+  "postCreateCommand": "cd frontend && npm install",
+  "forwardPorts": [
+    4200, //angular
+    8080 // java
+  ]
+}

@@ -1,0 +1,167 @@
+openapi: 3.1.0
+info:
+  title: WhizCorp Form API
+  description: API for all WhizCorp internal forms
+  version: 1.0.0
+
+paths:
+  /api/events:
+    get:
+      tags: [ 'events' ]
+      summary: Get all events of WhizCorp
+      description: Returns a list of events
+      responses:
+        '200':
+          description: A list of events (meeting or event)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+    post:
+      tags: [ 'events' ]
+      summary: Create new meeting / event
+      description: Create and save new event
+      requestBody:
+        description: Event to create
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Event'
+      responses:
+        '201':
+          description: Event created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+  /api/locations:
+    get:
+      tags: [ 'locations' ]
+      summary: Get all event / meeting locations
+      description: Returns a list of locations
+      responses:
+        '200':
+          description: A list of locations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Location'
+  /api/locations/{id}:
+    get:
+      tags: [ 'locations' ]
+      summary: Get location by ID
+      description: Returns a loction
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the location
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: location by ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+        '404':
+          description: No location for this ID found
+  /api/locations/direction/{id}:
+    get:
+      tags: [ 'locations' ]
+      summary: Get locations default directions by ID
+      description: Returns a default direction for a location
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the location
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: a default location direction
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationDirection'
+        '404':
+          description: No default location direction for this ID found
+
+components:
+  schemas:
+    Event:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Kind of event
+          enum:
+            - event
+            - meeting
+        title:
+          type: string
+          description: Title of the event
+        description:
+          type: string
+          description: Detailed description of the event
+        startDate:
+          type: string
+          format: date-time
+          description: Start date time of the event
+        endDate:
+          type: string
+          format: date-time
+          description: End date time of the event
+        numberOfAttendees:
+          type: integer
+          description: The number of attendees for the event
+        locationId:
+          type: integer
+          description: The reference to the selected location
+        locationDirection:
+          type: string
+          description: A description how to find the location
+        permissionState:
+          type: string
+          description: (for type event only) The permission state of the event
+          enum:
+            - granted
+            - denied
+            - pending
+        publicEvent:
+          type: boolean
+          description: (for type event only) If the event is public or not
+        internalEventDescription:
+          type: string
+          description: (for type event only) Detailed description what is internal needed for the event
+    Location:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: location unique id
+        name:
+          type: string
+          description: Name of the location
+        capacity:
+          type: string
+          description: How many attendees can max. attend this location
+        defaultDirectionId:
+          type: integer
+          description: Reference to the default directions description of the location
+    LocationDirection:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: id of referenced location
+        direction:
+          type: string
+          description: The default directions to the location

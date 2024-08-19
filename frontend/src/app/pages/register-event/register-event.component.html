@@ -1,0 +1,102 @@
+<div class="register-form">
+  <div class="heading">
+    Register new event
+    @if (error) {
+      <div class="status error">An error occurred 🙀</div>
+    } @else if (success) {
+      <div class="status success">Event registration was successful ☑️</div>
+    }
+  </div>
+  <hr />
+  @if (loading) {
+    <div class="loader"></div>
+  } @else {
+    <form (submit)="createEvent($event)">
+      <div class="form-input">
+        <label for="eventType">Type of event</label>
+        <select id="eventType" [formControl]="type">
+          <option value="meeting">
+            Meeting (Max. 10 attendees)
+          </option>
+          <option value="event">
+            Event (Min. 11 attendees)
+          </option>
+        </select>
+      </div>
+      <div class="form-group">
+        <div class="form-input">
+          <label for="eventStartDate">Start date</label>
+          <input type="date" name="" id="eventStartDate" [formControl]="startDate" />
+        </div>
+        <div class="form-input">
+          <label for="eventStartTime">Start time</label>
+          <input type="time" name="" id="eventStartTime" [formControl]="startTime" />
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-input">
+          <label for="eventEndDate">End date</label>
+          <input type="date" name="" id="eventEndDate" [formControl]="endDate" />
+        </div>
+        <div class="form-input">
+          <label for="eventEndTime">End time</label>
+          <input type="time" name="" id="eventEndTime" [formControl]="endTime" />
+        </div>
+      </div>
+      <div class="form-input">
+        <label for="numberOfAttendees">Number of attendees</label>
+        <input type="number" name="" id="numberOfAttendees" />
+      </div>
+      <div class="form-group">
+        <div class="form-input">
+          <label for="title">Event title</label>
+          <input type="text" name="" id="title" [formControl]="title" />
+        </div>
+        <div class="form-input">
+          <label for="description">Event description</label>
+          <textarea rows="5" name="" id="description" [formControl]="description"></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-input">
+          <label for="location">Location</label>
+          <select id="location" [formControl]="locationId">
+            @for (location of locations; track $index) {
+              <option [value]="location.id">
+                {{location.name}} (Max. {{location.capacity}} attendees)
+              </option>
+            }
+          </select>
+        </div>
+        <div class="form-input">
+          <label for="roomDirection">Location directions</label>
+          <textarea rows="5" name="" id="roomDirection" [formControl]="directions"></textarea>
+        </div>
+      </div>
+      @if (type.value === 'event') {
+        <div class="form-group">
+          <h5>Event permission</h5>
+          <div class="form-input">
+            <label for="publicEvent">Public Event</label>
+            <input type="checkbox" id="publicEvent" [formControl]="publicEvent">
+          </div>
+          <div class="form-input">
+            <label for="internalEventDescription">Company internal event needs and description</label>
+            <textarea
+              rows="5"
+              id="internalEventDescription"
+              [formControl]="internalEventDescription"
+              placeholder="Catering needed, social media promotion, etc."
+            ></textarea>
+          </div>
+        </div>
+      }
+      <div>
+        <button type="submit" class="btn">Register new event</button>
+      </div>
+    </form>
+    <div class="nav">
+      <a routerLink="/list-events" mat-raised-button>Show Events</a>
+    </div>
+  }
+</div>
