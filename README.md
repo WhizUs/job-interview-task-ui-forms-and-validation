@@ -28,7 +28,7 @@ WhizCorp is just such a corporation, yay!
 - if you want to debug use the vscode gradle extension and run the task application/bootrun in debug mode
 
 ### run frontend
-- `cd frontend`, `npm start` starts the frontend in dev mode
+- `cd frontend`, `npm install && npm start` starts the frontend in dev mode
 
 ### Backend API Documentation
 When backend server is running open: http://localhost:8080/swagger-ui.html to view the api documentation
