@@ -15,12 +15,23 @@ implementing a prefilling logic to pull data from external REST APIs.
 
 The company uses **Angular** and **Spring Boot** as their technology stack.
 
-## Task
+A simple prototype application has been created (available in `backend` and `frontend` folders) in an barebone state.
+Your colleagues have asked you to build upon this prototype to show them how your ideas and integrations may work.
 
-* Brainstorm all the problems and complexity
-* Find solutions/suggestions on how to handle them
-* Prepare for a discussion round with your colleagues Alice and Bob
+## Tasks
 
+* Where and how would you do validations?
+* How can we write the validation logic so that it is scalable and requires minimal human input
+* Create a more complex form with a sub-form (aka, another form needs to be filled out if a certain input-value is selected) and show you this integrates
+with your validation logic
+* Brainstorm:
+  * How can we scale the proposed solution?
+  * How can we automate?
+* Present your improved prototype to your colleagues and talk with them about current and future problems and how we can face them
+* Also read/consider topics in `NOTES.md`
+
+## Boundaries
+* Since you are creating a prototype / show-case, you do not need to worry about databases and such storage; just use in-memory for this task.
 
 ## Questions to get started
 
